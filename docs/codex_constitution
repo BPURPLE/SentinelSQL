@@ -1,0 +1,308 @@
+# Codex Constitution
+
+Version: 1.0
+Status: Frozen
+
+---
+
+# Purpose
+
+This document defines the mandatory engineering rules that Codex must follow while developing SentinelSQL.
+
+The purpose of this constitution is to preserve architectural integrity, maintain security, and prevent scope creep throughout implementation.
+
+Codex is an implementation assistant, not a software architect.
+
+---
+
+# Governing Documents
+
+The following documents are the single source of truth.
+
+1. product_specification.md
+2. architecture.md
+3. database_schema.md
+4. api_contract.md
+5. folder_structure.md
+6. engineering_principles.md
+7. roadmap.md
+
+If implementation conflicts with any of these documents, the implementation is incorrect.
+
+Never modify these documents.
+
+---
+
+# Primary Objectives
+
+Every implementation decision must prioritize, in order:
+
+1. Information Security
+2. System Integrity
+3. Usability
+4. Maintainability
+5. Productivity within the MVP timeline
+
+---
+
+# Architectural Authority
+
+Codex shall never:
+
+- redesign the architecture
+- replace technologies
+- rename architectural components
+- change request flow
+- change database relationships
+- introduce additional services
+- introduce microservices
+- introduce cloud infrastructure
+- introduce enterprise features
+
+without explicit approval.
+
+---
+
+# Scope Control
+
+The MVP scope is frozen.
+
+Codex shall never add:
+
+- production deployment features
+- Kubernetes
+- Redis
+- RabbitMQ
+- Kafka
+- WebSockets
+- GraphQL
+- Elasticsearch
+- Docker Swarm
+- Celery
+- background workers
+- distributed systems
+- caching layers
+- SIEM integration
+- LDAP
+- Active Directory
+- multi-tenancy
+
+unless explicitly instructed.
+
+---
+
+# Security Rules
+
+Every protected endpoint must enforce
+
+JWT Authentication
+
+↓
+
+RBAC Authorization
+
+↓
+
+Pydantic Validation
+
+↓
+
+Business Logic
+
+No exceptions.
+
+Every SQL query must pass through
+
+Gateway
+
+↓
+
+Canonicalizer
+
+↓
+
+Tokenizer
+
+↓
+
+Feature Extractor
+
+↓
+
+Rule Engine
+
+↓
+
+ML Classifier
+
+↓
+
+Threat Decision Engine
+
+↓
+
+Response Engine
+
+No SQL query may bypass this pipeline.
+
+---
+
+# AI Rules
+
+The AI subsystem exists only to explain security decisions.
+
+AI shall never
+
+- execute SQL
+- modify SQL
+- influence decisions
+- bypass authentication
+- bypass authorization
+- bypass the Decision Engine
+- write directly to PostgreSQL
+
+AI is advisory only.
+
+---
+
+# Decision Engine Rules
+
+The Threat Decision Engine is the only component authorized to produce
+
+ALLOW
+
+or
+
+BLOCK
+
+No other module may perform enforcement.
+
+---
+
+# Database Rules
+
+Only PostgreSQL.
+
+Only parameterized queries.
+
+Never concatenate SQL strings.
+
+Never store plaintext passwords.
+
+Always use bcrypt.
+
+Always use UUID primary keys.
+
+Audit logs are immutable.
+
+---
+
+# Development Rules
+
+Implement one module at a time.
+
+Finish one module before starting another.
+
+Never partially implement multiple modules simultaneously.
+
+Keep functions small.
+
+Keep modules cohesive.
+
+Prefer readability over cleverness.
+
+Avoid unnecessary abstractions.
+
+---
+
+# Code Quality Rules
+
+Every implementation must
+
+- include type hints
+- include docstrings where appropriate
+- follow consistent naming
+- avoid duplicated logic
+- separate business logic from routing
+- separate security from presentation
+
+---
+
+# Testing Rules
+
+Each module should be testable independently.
+
+Business logic should remain independent from
+
+- FastAPI
+- React
+- PostgreSQL configuration
+
+where practical.
+
+---
+
+# Documentation Rules
+
+If implementation changes,
+
+documentation must be updated first.
+
+Code must never silently diverge from documentation.
+
+---
+
+# Approval Rules
+
+Before making any change that affects
+
+- architecture
+- product scope
+- security model
+- database schema
+- API contract
+- folder structure
+
+Codex must stop and request approval.
+
+Codex must never make these decisions autonomously.
+
+---
+
+# Definition of Success
+
+SentinelSQL is successful when the implementation conforms completely to
+
+- Product Specification
+- Software Architecture
+- Database Schema
+- API Contract
+- Folder Structure
+- Engineering Principles
+- Roadmap
+
+without introducing undocumented behavior.
+
+---
+
+# Final Principle
+
+# Final Principle
+
+Codex is responsible for implementation.
+
+Codex must follow the developer's specifications and the approved project documentation at all times.
+
+The project documentation is the sole authority for system design.
+
+Implementation must always conform to the documentation.
+
+The documentation may only be modified with explicit approval from the developer (human).
+
+Codex must never independently alter the architecture, requirements, security model, database design, API contract, folder structure, or project scope.
+
+If implementation appears to conflict with the documentation, Codex must stop, explain the conflict, and request developer approval before proceeding.
+
+Implementation always follows documentation.
+
+Never the reverse.

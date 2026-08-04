@@ -7,17 +7,19 @@
 
 # 1. Product Overview
 
-SentinelSQL is an AI-assisted database security gateway that monitors SQL queries, detects malicious or anomalous database activity, and provides real-time alerts with explainable security insights.
+SentinelSQL is an AI-assisted database security gateway that intercepts SQL queries before execution, detects malicious database activity using rule-based analysis and machine learning, and provides explainable security insights through a secure AI explanation pipeline.
 
-The MVP is designed for controlled environments using a sample CRUD application connected to a sandboxed PostgreSQL database. It demonstrates how rule-based detection and behavioral anomaly detection can identify database threats before query execution while maintaining complete auditability and explainable incident reporting.
+The MVP operates in a controlled environment using a sample CRUD application connected to a sandboxed PostgreSQL database. Every SQL query is inspected before execution, assigned a risk assessment, and either allowed or blocked according to deterministic security policies.
+
+The AI subsystem is advisory only and never participates in security enforcement.
 
 ---
 
 # 2. Problem Statement
 
-Modern web applications primarily rely on application-layer validation to protect databases from attacks. However, vulnerabilities such as SQL Injection, privilege misuse, and abnormal database activity may still bypass these defenses.
+Most web applications rely primarily on application-layer validation to protect their databases. Vulnerabilities such as SQL Injection, malicious query manipulation, and unauthorized database activity may still bypass these protections.
 
-SentinelSQL introduces an independent security layer positioned between the application and the database. Every database query passes through SentinelSQL before execution, allowing the system to inspect, evaluate, detect, and respond to suspicious activity in real time.
+SentinelSQL introduces an independent database security layer positioned between the application and the database. Every SQL query passes through SentinelSQL before execution, allowing the system to inspect, classify, evaluate, and respond to suspicious activity in real time.
 
 ---
 
@@ -32,8 +34,8 @@ SentinelSQL introduces an independent security layer positioned between the appl
 ## Secondary Users
 
 - Cybersecurity Educators
-- Small Engineering Teams
 - Academic Institutions
+- Small Engineering Teams
 
 ---
 
@@ -41,15 +43,19 @@ SentinelSQL introduces an independent security layer positioned between the appl
 
 The SentinelSQL MVP aims to:
 
-- Monitor all database queries passing through the security gateway.
+- Authenticate every incoming request.
+- Authorize requests using Role-Based Access Control (RBAC).
+- Monitor every SQL query before database execution.
+- Canonicalize and extract features from SQL queries.
 - Detect known SQL Injection attacks using rule-based analysis.
-- Detect abnormal query behavior using machine learning.
-- Calculate a unified risk score for every query.
-- Generate explainable security alerts and incident reports.
-- Maintain immutable audit logs for all security events.
-- Visualize database activity through a real-time dashboard.
+- Classify SQL queries as benign or malicious using machine learning.
+- Combine detection results into a deterministic security decision.
+- Calculate a unified risk assessment for every query.
+- Generate explainable security alerts and reports.
+- Maintain immutable audit logs.
+- Visualize security events through a real-time dashboard.
 - Provide secure AI-assisted threat explanations.
-- Protect the AI explanation pipeline against prompt injection and malicious inputs.
+- Protect the AI explanation pipeline from prompt injection attacks.
 
 ---
 
@@ -57,30 +63,33 @@ The SentinelSQL MVP aims to:
 
 ## Included
 
-- User Authentication
+- JWT Authentication
 - Role-Based Access Control (RBAC)
 - SQL Query Monitoring
-- SQL Query Canonicalization & Feature Extraction
+- SQL Canonicalization
+- SQL Tokenization
+- Feature Extraction
 - Rule-Based SQL Injection Detection
-- Behavioral Anomaly Detection
+- TF-IDF Feature Vectorization
+- Multinomial Naive Bayes Classification
 - Threat Decision Engine
-- Risk Scoring
+- Risk Assessment
 - Audit Logging
 - Incident Dashboard
-- Security Report Generation
 - AI Threat Explanation
 - AI Prompt Guard
+- Security Report Generation
 
 ## Excluded
 
 - Production Deployment
-- Cloud Infrastructure
 - Multi-Tenant Architecture
+- Cloud Infrastructure
 - Network Packet Inspection
 - Web Application Firewall (WAF)
 - SIEM Integration
-- Active Directory / LDAP Integration
-- Enterprise Compliance Modules
+- Active Directory / LDAP
+- Enterprise Compliance
 - Distributed Detection
 - Cross-Database Clustering
 
@@ -93,11 +102,11 @@ The SentinelSQL MVP aims to:
 | FR-01 | User Authentication |
 | FR-02 | Role-Based Authorization (RBAC) |
 | FR-03 | SQL Query Monitoring |
-| FR-04 | SQL Query Canonicalization & Feature Extraction |
+| FR-04 | SQL Canonicalization, Tokenization & Feature Extraction |
 | FR-05 | Rule-Based SQL Injection Detection |
-| FR-06 | Behavioral Anomaly Detection |
+| FR-06 | SQL Query Classification (TF-IDF + Multinomial Naive Bayes) |
 | FR-07 | Threat Decision Engine |
-| FR-08 | Risk Score Generation |
+| FR-08 | Risk Assessment |
 | FR-09 | Incident Response & Alert Generation |
 | FR-10 | Immutable Audit Logging |
 | FR-11 | Dashboard Visualization |
@@ -154,16 +163,16 @@ The SentinelSQL MVP aims to:
 The MVP is considered complete when it can:
 
 - Authenticate users securely.
-- Enforce role-based authorization.
+- Enforce RBAC authorization.
 - Process CRUD database requests.
 - Inspect every SQL query before execution.
 - Detect common SQL Injection attacks.
-- Detect abnormal query behavior using machine learning.
-- Calculate and assign risk scores.
-- Block or alert on malicious queries according to the Decision Engine policy.
-- Generate AI-assisted threat explanations.
-- Successfully mitigate a documented prompt injection evaluation suite.
+- Correctly classify SQL queries as benign or malicious using machine learning.
+- Generate deterministic security decisions.
+- Block or allow queries according to the Threat Decision Engine.
 - Record complete audit logs.
+- Generate explainable AI-assisted threat summaries.
+- Successfully mitigate a documented prompt injection evaluation suite.
 - Display incidents on a real-time dashboard.
 - Generate security reports.
 
@@ -177,25 +186,23 @@ The MVP is considered complete when it can:
 - MySQL Support
 - Microsoft SQL Server Support
 - Oracle Database Support
-- Advanced Behavioral Profiling
-- Threat Intelligence Feed Integration
+- Advanced SQL Classification
+- Threat Intelligence Integration
 - SIEM Integration
 
 ## Artificial Intelligence
 
 - Advanced Prompt Injection Detection
 - Multi-LLM Support
-- Retrieval-Augmented Threat Intelligence (RAG)
+- Retrieval-Augmented Generation (RAG)
 - AI-Assisted Rule Generation
-- Automated Threat Classification
 
 ## Platform
 
 - Docker Deployment
-- Kubernetes Support
+- Kubernetes
 - Cloud Deployment
 - Multi-Tenant Architecture
-- Enterprise Policy Engine
 
 ---
 
@@ -220,14 +227,15 @@ The MVP is considered complete when it can:
 ## Machine Learning
 
 - scikit-learn
-- Isolation Forest
+- TF-IDF Vectorizer
+- Multinomial Naive Bayes
 
 ## Authentication
 
 - JWT
 - bcrypt
 
-## Data Validation
+## Validation
 
 - Pydantic
 
@@ -242,76 +250,107 @@ The MVP is considered complete when it can:
 
 ## AI Development
 
-- Codex (Implementation)
-- CodeRabbit (Code Review)
+- Codex
+- CodeRabbit
 
 ---
 
 # 11. Guiding Principles
 
-SentinelSQL follows the following engineering principles:
+SentinelSQL follows these engineering principles:
 
 - Security before convenience.
 - Zero Trust by default.
-- Every request is authenticated and authorized.
-- Every query is inspected before execution.
-- AI assists security analysts but never makes security decisions.
-- The AI Prompt Guard protects the AI explanation pipeline from malicious inputs.
-- Every security decision must be explainable.
-- Every critical action must be auditable.
-- Sensitive data is never hardcoded.
-- Components must remain modular, testable, and maintainable.
+- Every request is authenticated.
+- Every request is authorized.
+- Every SQL query is inspected before execution.
+- Every security decision is deterministic.
+- AI explains decisions but never makes them.
+- Prompt Guard protects the AI explanation pipeline.
+- Every critical action is auditable.
+- Components remain modular and independently testable.
 
 ---
 
 # 12. MVP Constraints
 
-To ensure successful delivery within the project timeline, the MVP intentionally limits its scope.
+To ensure successful delivery within the project timeline:
 
-- Database support is limited to PostgreSQL.
-- Supported SQL operations are SELECT, INSERT, UPDATE, and DELETE.
-- Only single-statement queries are supported.
+- PostgreSQL is the only supported database.
+- Supported SQL operations are SELECT, INSERT, UPDATE and DELETE.
+- Only single-statement SQL queries are supported.
 - General-purpose SQL parsing is out of scope.
-- AI explanations are advisory only and never influence enforcement decisions.
-- Machine learning is trained exclusively on synthetic role-based traffic generated within the sandbox environment.
-- Security enforcement is deterministic and handled solely by the Threat Decision Engine.
+- Machine learning is trained using a labeled dataset of benign and malicious SQL queries.
+- AI explanations are advisory only.
+- AI never influences enforcement decisions.
+- Security enforcement is performed exclusively by the Threat Decision Engine.
 
 ---
 
 # 13. Architecture Principles
 
-SentinelSQL is designed around a layered security architecture.
+SentinelSQL follows a layered security architecture.
 
-Application
+Client Request
+
 ↓
+
+Rate Limiter
+
+↓
+
 Authentication
+
 ↓
+
 Authorization
+
 ↓
+
 Validation
+
 ↓
+
 SQL Gateway
+
 ↓
+
 Canonicalization
+
 ↓
+
 Rule Engine
+
 ↓
-Behavioral ML Engine
+
+ML Classifier (TF-IDF + Multinomial Naive Bayes)
+
 ↓
+
 Threat Decision Engine
+
 ↓
+
 Response Engine
+
 ↓
+
 AI Prompt Guard
+
 ↓
+
 AI Threat Explainer
+
 ↓
+
 Output Validator
+
 ↓
+
 Dashboard & Reports
 
 Each layer has a single responsibility and communicates only through well-defined interfaces.
 
-The Threat Decision Engine is the only component authorized to determine enforcement actions.
+The Threat Decision Engine is the only component authorized to determine security enforcement.
 
-The AI subsystem may explain security decisions but can never modify, override, or generate them.
+The AI subsystem may explain security decisions but can never modify, override, or generate them.s
