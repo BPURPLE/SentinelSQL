@@ -1,0 +1,23 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local tooling and logs
+.idea/
+.vscode/
+*.log
+
+# Build artifacts
+build/
+dist/
+*.egg-info/

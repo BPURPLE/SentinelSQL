@@ -1,0 +1,3 @@
+# Docker Compose placeholder for local development.
+# Define services only after the runtime and security boundaries are finalized.
+services: {}

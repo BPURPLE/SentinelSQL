@@ -1,0 +1,1 @@
+"""SentinelSQL application package."""
